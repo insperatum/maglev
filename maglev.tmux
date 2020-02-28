@@ -62,6 +62,7 @@ main
 
 # END Fix CPU segment ----------------------------------------------------------
 
+TMUX_COLOR=${TMUX_COLOR:-colour4} # blue
 apply_theme() {
     left_separator=''
     left_separator_black=''
@@ -71,14 +72,14 @@ apply_theme() {
 
     # panes
     pane_border_fg=colour8 # gray
-    pane_active_border_fg=colour4 # blue
+    pane_active_border_fg=$TMUX_COLOR # blue
 
     tmux set -g pane-border-style fg=$pane_border_fg \; set -g pane-active-border-style fg=$pane_active_border_fg
     #uncomment for fat borders
     #tmux set -ga pane-border-style bg=$pane_border_fg \; set -ga pane-active-border-style bg=$pane_active_border_fg
 
-    display_panes_active_colour=colour4 # blue
-    display_panes_colour=colour4 # blue
+    display_panes_active_colour=$TMUX_COLOR # blue
+    display_panes_colour=$TMUX_COLOR # blue
     tmux set -g display-panes-active-colour $display_panes_active_colour \; set -g display-panes-colour $display_panes_colour
 
     # messages
@@ -117,7 +118,7 @@ apply_theme() {
     tmux setw -g window-status-style fg=$window_status_fg,bg=$window_status_bg \; setw -g window-status-format "$window_status_format"
 
     window_status_current_fg=colour16 # black
-    window_status_current_bg=colour4 # blue
+    window_status_current_bg=$TMUX_COLOR # blue
     window_status_current_format="#[fg=$window_status_bg,bg=$window_status_current_bg]$left_separator_black#[fg=$window_status_current_fg,bg=$window_status_current_bg,bold] #I $left_separator #W #[fg=$window_status_current_bg,bg=$status_bg,nobold]$left_separator_black"
     tmux setw -g window-status-current-format "$window_status_current_format"
     tmux set -g status-justify left
@@ -132,7 +133,7 @@ apply_theme() {
     window_status_bell_attr=blink,bold
     tmux setw -g window-status-bell-style fg=$window_status_bell_fg,bg=$window_status_bell_bg,$window_status_bell_attr
 
-    window_status_last_fg=colour4 # blue
+    window_status_last_fg=$TMUX_COLOR # blue
     window_status_last_attr=default
     tmux setw -g window-status-last-style $window_status_last_attr,fg=$window_status_last_fg
 
@@ -168,7 +169,7 @@ apply_theme() {
     tmux set -g status-right-length 64 \; set -g status-right "$status_right"
 
     # clock
-    clock_mode_colour=colour4 # blue
+    clock_mode_colour=$TMUX_COLOR # blue
     tmux setw -g clock-mode-colour $clock_mode_colour
 }
 
